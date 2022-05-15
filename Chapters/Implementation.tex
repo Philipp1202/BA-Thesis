@@ -1,7 +1,21 @@
 % !TEX root = ../Thesis.tex
 \chapter{Implementation}
 
-This is the body of the thesis.
+In this section, we will introduce how we implemented a word-gesture keyboard using Unity and a python script and how we used SHARK2 for our algorithm.
 
-\section{Functions of my Word-Gesture Keyboard}
-\subsection{Different functions is Subsections}
+\section*{Word Graph Generator}
+As mentioned in the related-work SHARK2 part TODO: REFERENCE TO MENTIONED SECTION , to make SHARK2 work, the perfect graphs for all the words in a lexicon are needed. Therefore, we needed a script, that produces or overwrites a file for every available keyboard layout and writes the sampled points of every graph in it. Such a file contains per line a word, then a certain number of points from the word's perfect graph followed by the same points, but normalized (normalized as mentioned in the related-work SHARK2 section) TODO: REFERENCE TO MENTIONED SECTION.\\
+To run the script, the user has to provide the name of the layout that he/she wants to create the perfect graphs for. Additionally, he/she has also to write the name of the text file containing all the words (lexicon). The script then either creates a new file named "sokgraph\_\textit{layout}.txt" or if already a file with this name exists, it deletes its content to write new in it. Then it fills the file line by line as mentioned above.\\
+The file can only be executed for one layout a time. Hence, if there are more available layouts for our word-gesture keyboard, the user has to run the script several times.
+
+\section{Used Algorithm}
+
+\section{Functions}
+
+"draw" words with gestures
+create own layout
+change size
+choose between best 5 words
+keyboard is movable
+chose between available layouts all the time possible
+add new words
