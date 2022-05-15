@@ -9,13 +9,16 @@ To run the script, the user has to provide the name of the layout that he/she wa
 The file can only be executed for one layout a time. Hence, if there are more available layouts for our word-gesture keyboard, the user has to run the script several times.
 
 \section{Used Algorithm}
+For our word-gesture keyboard we used a weaker version of SHARK2. This means, we do also work with two channels, a location channel and a shape channel. The shape channel is to calculate the deviation from the user inputted graph and a perfect graph from a word in the sense of distance with respect to their shape, the location channel is for the same thing, but not for the shape, but rather the position. When looking at the shape, we have to normalize the graphs in a specific way, so the position, where they exactly lie in a coordinate system does not matter. When looking at the position, we look at the graphs as they are, without normalizing or changing anything. As in the SHARK2 system we also use the start and end positions of the graphs as pruning method. The difference is, that for SHARK2, the authors chose to use normalize all the graphs in scale and translation before comparing. We do not normalize the graphs, but just look at the start and end positions of a user input graph and a word's graph. Another thing we have almost implemented the same as it is in SHARK2 is $\delta$. For the shape and location channel integration, the used $\delta$ in SHARK2 is equal to the radius of one key. We do the same for the location channel (in the integration part), but we do not use the same $\delta$ for the shape channel (in the integration part). For this, we take a $\delta$ that equals the radius of a normalized key. That means, a small graph will have a bigger delta than a big graph, because we do normalize the graphs and a small graph gets stretched by it, whereby a big graph gets drawn together. TODO: REVISE.\\
+However, we do currently not use any language information nor dynamic channel weighting by gesturing speed.
 
 \section{Functions}
+The most important, but also most basic function our word-gesture keyboard provides, is the writing of words with gestures. A user can press the trigger button of a VR controller inside the keyboards hitbox and start making a gesture on it. The user will see a TODO: SEE COLOR. red/purple line that is drawn on the keyboard where he/she moves. This helps the user to keep track of the trace he/she drew. When the user wants to finish the gesture, he/she needs to release the trigger of the controller. At this moment, our program starts to evaluate the 5 words with the highest accordance to the user inputted graph. The one with the highest accordance will be written into the text field. The other 4 are displayed at the keyboard TODO: CITE TO PICTURE WITH RECOMMENDATIONS., such that the user also can choose between these. When the user chooses one of these 4 words, the word that has been written into the text field before is getting replaced by the user's chosen word.
 
-"draw" words with gestures
+"draw" words with gestures/put single letters
 create own layout
 change size
-choose between best 5 words
+---choose between best 5 words
 keyboard is movable
 chose between available layouts all the time possible
 add new words
