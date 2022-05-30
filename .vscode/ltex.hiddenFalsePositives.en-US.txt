@@ -1,0 +1,4 @@
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qvitrivr is an open source full stack content-based multimedia retrieval system.\\E$"}
+{"rule":"FIRST_OF_ALL","sentence":"^\\QFirst of all, it Independent of the details of the implementation, every word-gesture keyboard (also called slide-to-type keyboard) works with gestures.\\E$"}
+{"rule":"FIRST_OF_ALL","sentence":"^\\QFirst of all, it has to be Independent of the details of the implementation, every word-gesture keyboard (also called slide-to-type keyboard) works with gestures.\\E$"}
+{"rule":"FIRST_OF_ALL","sentence":"^\\QFirst of all, it does not Independent of the details of the implementation, every word-gesture keyboard (also called slide-to-type keyboard) works with gestures.\\E$"}
