@@ -53,7 +53,13 @@ r is the radius of a key and d is defined as:
 
 For all these formulas N has the same definition as for formula \ref{eqn:locationformula}. The "trick" the authors use these formulas for is pretty simple. They state, that they form something like an "invisible" tunnel of one key width that contains all keys used to write a certain word. A perfect distance score of zero is given, when all the sampled points of the user inputted graph lie within the tunnel of t. If this is not the case, the distance score for t with respect to the user inputted graph is set to the sum of the spatial point-to-point distances.
 
-With these two distances, the most probable word, the user intended to write, can be calculated. To do so, the authors used the following three formulas: TODO: CHANNEL INTEGRATION.\\
+With the two distances $x_S$ and $x_L$, the most probable word, the user intended to write, can be calculated. The authors assume, that the distance from a user inputted graph to the perfect graph of a word follows a Gaussian distribution. This means, if the user inputted gesture has distance x to a perfect graph of word y, the probability, that y is the intended word can be calculated using the Gaussian probability density function:
+\begin{equation}
+    p(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left[{-\frac{1}{2}}\left(\frac{x-\mu}{\sigma}\right)^2\right]
+\end{equation}
+
+To do so, the authors used the following three formulas:
+
 
 The final result c(w) for every word w that met the requirements tells the probability that w is the word, the user intended to write with his/her gesture.\\
 The authors say, that the user can draw a graph either on visual guidance from the keyboard (looking for the next letter of a word on the keyboard) or recall from memory. A graph drawn by visual guidance results in a higher location distance score than a graph drawn from memory recall. If a user draws a graph by memory recall the location distance score will be poor and the focus lays more on the shape. Therefore, they suggest a dynamic weighting of the two channels, that is to adjust the weighting of the channels according to the time needed to draw the graph. In general, graphs drawn by memory recall are faster than visual guided ones. Hence, the gesture completion time should tell, how heavy the location channel should be weighted in the final selection. The time to complete a graph for a word obviously depends on its length and complexity. The authors then use Fitts' law (TODO: EITHER FORMULA OR REFERENCE TO IT) to calculate the normative writing time for a graph of a word. They use this result together with the actual graph production time to modify $\delta$ in (TODO: REFERENCE TO FORMULA THEY SUB DELTA).\\
