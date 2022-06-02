@@ -1,0 +1,94 @@
+% !TEX root = ../Thesis.tex
+\chapter{Background}
+
+In this chapter we introduce the environment the word-gesture keyboard is mainly developed in and developed for, some things about conventional and word-gesture keyboards in general and SHARK2.
+
+\section{vitrivr-VR and UnityVR}
+vitrivr\footnote{https://vitrivr.org/} is an ``open source full stack content-based multimedia retrieval system''\footnote{https://dbis.dmi.unibas.ch/research/projects/vitrivr-project/}. It supports video, image, audio and 3D collections. It also features a very broad set of query paradigms that are supported. vitrivr was developed by the Database and Information Systems group\footnote{https://dbis.dmi.unibas.ch} (dbis) of the university of Basel. For our thesis, we use the VR part of vitrivr, namely vitrivr-VR. This is being developed in Unity\footnote{https://unity.com}.\\
+Unity is a tool for developers, where one can create projects in 2D, 3D and VR. To a certain degree, Unity is free to use. Developers can provide assets and Unity packages. These can be either free to use or have to be bought. Another developer then can import and use these in their own Unity projects. The main language used in Unity is C\#. A developer can write such C\# scripts and if needed attach them to objects in a scene. These scripts can control the objects and what they are doing when a user interacts with them or something particular happens. 
+
+\section{Conventional Keyboard}
+In this thesis, when we talk about conventional keyboard, we do not look at its type of construction, if it's a mechanical keyboard or not. We also do not consider a special layout, when we talk about conventional keyboards. We define the term ``conventional keyboard'' as the most used keyboard type, the one where a user has to input every single letter by pressing or tapping a single key.\\
+There are two different kinds of conventional keyboards. One is the physical variant. This one is used for most desktop and laptop computers. The other variant is a so called soft keyboard. This is an on-screen conventional keyboard that is mostly used with phones, tablets and other touchscreen-based devices. It has the same functionality as the physical conventional keyboard, but instead of pressing a physical key, one has to tap on the screen at the right place.\\
+%On desktop and laptop computers we normally use such a conventional keyboard. One thing that might be different in some countries is the layout. But that does not change the functionality. Conventional keyboards are also the most used keyboard for phones, tablets and other touchscreen-based devices. The only difference is that we do not press physical keys, but tap on the screen, where a certain key is. These keyboards work really well for text input with the previously mentioned devices. 
+
+\subsection{Disadvantages in VR/AR}
+When it comes to VR and AR, it seems, that this is not the best method to input text. One reason for this statement is, that right now, it lacks of tactile feedback and accurate finger tracking. While this could be improved during the next years, yet it is not really there. Another reason is the size of such keyboards in VR. We have to tap on the keys with our controllers. If the keys are too close together, it might cause a problem in recognizing which key the user wanted to press. Therefore, there needs to be either bigger keys or bigger spaces between two adjacent keys. This results in a bigger keyboard, which results in more needed movement with the arms. If we have to move our arms a lot to input some text, this can quickly become exhausting.
+
+\section{Word-Gesture Keyboard}
+A word-gesture keyboard may look pretty much the same as a conventional keyboard described in the last section, but works quite different. First of all, it does not exist in a hardware version like the conventional keyboard does. It is more like the soft keyboard version on a screen.\\
+Independent of the details of the implementation, every word-gesture keyboard works with gestures. That means, instead of tapping on single keys, the user has to draw one line or a shape on the keyboard. This will then be evaluated by an algorithm, that determines the closest word, the one with the most similar shape seen from different aspects, from a lexicon. For example, to input the word "science", the user has to put the finger on the screen, where the "s-key" is displayed. Then they have to move, with the finger still on the screen, to the respective adjacent key with the correct character. At the end, the user has to take away their finger from the screen at the "e-key". If the gesture was more or less good, the algorithm behind should now be able to calculate, that "science" is the word, the user intended to write. But if the gesture is done bad, it can happen, that the wrong word is being calculated. 
+
+\subsection{$\text{SHARK}^2$}
+$\text{SHARK}^2$ is a "large vocabulary shorthand writing system for pen-based computers" \cite{Kristensson2004SHARK2AL} developed by Shumin Zhai and Per-Ola Kristensson. It can compare the user inputted graph with a perfect graph of any word in a given lexicon. A perfect graph is the graph, that is produced, if we start from the center of the word's first letter on the keyboard. Then we draw a straight line to the center of the next letter of the word and so on, until we reach the last letter. $SHARK^2$ then can find the word with the most similar graph compared to the user input. To achieve this, it uses a multi-channel recognition system. Each channel alone from the system developed by Zhai and Kristensson \cite{Kristensson2004SHARK2AL} does not necessarily have enough power, but all the channels together can detect the right word. The most important part are the two main channels, a shape recognizer and a location recognizer, where different aspects of the graphs get looked at. There are also some other tricks the system uses to achieve the best possible results.\\
+\subsubsection{Preconditions}
+The $\text{SHARK}^2$ system needs a lexicon that should be in the order of 10'000 words. The lexicon can be obtained through different methods. For example, the lexicon used to test $\text{SHARK}^2$ was mined from one of the author's email. For all the words in the lexicon, also their perfect graphs have to be stored. This is not mentioned by the author's, but it would make sense, to store N points for each graph, with N being the number of points that samples the graph.\\
+
+\subsubsection{Template Pruning}
+First of all, $SHARK^2$ uses template pruning. It compares the start and end positions of the perfect graph of each word in the lexicon with the input gesture from the user, both being normalized. If one of these two distances is bigger than a given threshold, the checked word will be discarded and not further considered. With normalized, the authors mean normalized in both, shape and location.\\
+
+\subsubsection{Shape Channel Recognition}
+The next step is to apply the shape recognizer. It compares the shapes of the perfect graph for every word in the lexicon and the user inputted graph. For this, an amount of N sampling points has to be calculated for every graph. These N points need to be equidistant. Then they have to be normalized in scale and location. This means, that the graphs are all normalized by scaling the largest side of the graph's bounding box to a predetermined length L: 
+\begin{equation}
+    s = \frac{L}{\text{max}(W,H)}
+\end{equation}
+W and H are the width and height of the graph's bounding box. The middle point $m$ of every graph's bounding box now has to be calculated. Then, $m$ has to be subtracted from every point, because this sets the middle point of the bounding box to $(0,0)$, thus normalizes it in location. Then, all points' positions have to be divided by s to get the normalized positions. Now the distance between the normalized user inputted graph and every word's normlaized perfect graph has to be calculated. To do so, we use the following formula:
+\begin{equation}
+    x_s = \frac{1}{N}\sum_{i = 1}^{N}\left\lVert u_i - t_i\right\rVert_2
+\end{equation}
+where $u_i$ is the i-th point of the user inputted graph and $t_i$ the i-th point of a word's perfect graph. This is the so-called proportional shape matching distance \cite{Kristensson2004SHARK2AL}.
+
+\subsubsection{Why using more channels?}
+Now, one could think, that this is enough and with the application of the template pruning and shape channel recognition, the word is perfectly determined. This is not the case. The authors stated, that words can have a similar or even same shape as other words. They call these word pairs "confusion pairs". They found out, that for example on an ATOMIK layout with a lexicon of 20'000 words, there were 1117 pairs of words that have an identical graph, if the starting and ending positions are not considered. If these are also considered with the shape, there is still a total of 537 confusion pairs.\\
+
+\subsubsection{Location Channel Recognition}
+To avoid these, the authors were using a second channel, not for the shape, but for the location. For the following formulas and calculations, the normalization of the graphs in not needed anymore. As the name states, it is more about the location, where the graph lies in a coordinate system, than about its shape.\\
+They use an algorithm that computes the distance of the user inputted graph u to the perfect graph t of every word in the lexicon. The location channel distance is defined as:
+\begin{equation}
+    x_L = \sum_{i = 1}^{N}\alpha(i)\delta(i)
+    \label{eqn:locationformula}
+\end{equation}
+where N is the number of points used to sample a graph. $\alpha(i)$ with $i \in (1,N)$ are weights for the different point-to-point distances, such that $\sum_{i = 1}^{N}\alpha(i) = 1$. $\alpha(i)$ can be valued in various ways. For $SHARK^2$ the authors used a function, that gives the lowest weight to the middle point-to-point distance. For the other point-to-point distances, the weight increases linearly towards the two ends. $\delta(i)$ is defined through following formula:
+\begin{equation}
+    \delta(i) =
+        \begin{cases}
+            0, & D(u,t) = 0 \land D(t,u) = 0 \\
+            \left\lVert u_i - t_i \right\rVert_2, & \text{otherwise}
+        \end{cases}
+\end{equation}
+where $u_i$ is the i-th point of u and $t_i$ the i-th point of t. D is defined as:
+\begin{equation}
+    D(p,q) = \sum_{i = 1}^{N}\text{max}(d(p_i,q) - r,0)
+\end{equation}
+r is the radius of a key and d is defined as:
+\begin{equation}
+    d(p_i,q) = \text{min}(\left\lVert p_i - q_1 \right\rVert_2, \left\lVert p_i - q_2 \right\rVert_2, \dots, \left\lVert p_i - q_N\right\rVert_2)
+\end{equation}
+
+For all these formulas N has the same definition as for formula \ref{eqn:locationformula}. The "trick" the authors use these formulas for is pretty simple. They state, that they form something like an "invisible" tunnel of one key width that contains all keys used to write a certain word. A perfect distance score of zero is given, when all the sampled points of the user inputted graph lie within the tunnel of $t$. If this is not the case, the distance score for t with respect to the user inputted graph is set to the sum of the spatial point-to-point distances.
+
+\subsubsection{Channel Integration}
+With the two distances $x_S$ and $x_L$, the most probable word, the user intended to write, can be calculated pretty good. The authors assume, that the distance from a user inputted graph to the perfect graph of a word follows a Gaussian distribution. This means, if the user inputted gesture has distance $x$ to a perfect graph of a word $y$, the probability, that y is the intended word can be calculated using the Gaussian probability density function:
+\begin{equation}
+    p(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left[{-\frac{1}{2}}\left(\frac{x-\mu}{\sigma}\right)^2\right]
+    \label{eqn:gaussian}
+\end{equation}
+One important thing here is, that this calculation has to be performed two times per word, because it has to be done for $x_S$ and $x_L$. $\mu = 0$ and $\sigma$ can be obtained through training from large amount of data. $\sigma$ can be seen here as the sensitivity of a channel. If for example $\sigma$ is equal to one key radius, the words, whose perfect graphs have a greater distance to the user inputted graph than one key width, have practically zero probability of being the intended word. For $\text{SHARK}^2$ the authors used $\sigma$ as parameter to adjust the weight of contribution of each channel.\\
+The authors also use $\sigma$ for further pruning. They discard all candidate words, whose distance $x$ is bigger than 2$\sigma$. For the candidate words $w \in W$, that have not been discarded until now, the marginalized probability to be the intended word is: 
+\begin{equation}
+    p'(w) = \frac{p(x)}{\sum\limits_{i \in W}p(i)}
+\end{equation}
+%where p(i) is used from formula above ((p(x))
+The last step of the channel integration is to integrate the probabilities from the two channels using Bayes' rule:
+\begin{equation}
+    c(w) = \frac{p'_S(w)p'_L(w)}{\sum\limits_{i \in W_S \land W_L}p'_S(i)p'_L(i)}
+\end{equation}
+$c(w)$ is now the confidence score for the word $w$.
+
+\subsubsection{Further steps to improve the results}
+\paragraph{Dynamic Channel Weighting by Gesturing Speed}\ \\
+The authors say, that the user can draw a graph either on visual guidance from the keyboard (looking for the next letter of a word on the keyboard) or recall from memory. A graph drawn by visual guidance results in a higher location distance score than a graph drawn from memory recall. If a user draws a graph by memory recall the location distance score will be poor and the focus lays more on the shape. Therefore, they suggest a dynamic weighting of the two channels, that is to adjust the weighting of the channels according to the time needed to draw the graph. In general, graphs drawn by memory recall are faster than visual guided ones. Hence, the gesture completion time should tell, how heavy the location channel should be weighted in the final selection. The time to complete a graph for a word obviously depends on its length and complexity. The authors then use Fitts' law\\
+IS FORMULA NECESSARY HERE?\\
+to calculate the normative writing time for a graph of a word. They use this result together with the actual graph production time to modify $\sigma$ used in formula \ref{eqn:gaussian}.\\
+\paragraph{Using Language Information}\ \\
+The authors achieved quite good performance with the two core channels, but there still might be conflicting words. To prevent these, the authors suggest to also use language information. For $\text{SHARK}^2$ smoothed bigrams are used as the language model. It is then used to rearrange the N-best list of words received before.
