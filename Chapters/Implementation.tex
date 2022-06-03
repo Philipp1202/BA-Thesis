@@ -16,17 +16,41 @@ Another thing we implemented different is $\sigma$. For the channel integration 
 But as mentioned in the beginning of this section, we use a weaker form of the algorithm used in $\text{SHARK}^2$. That being said, we do currently not use any language information nor dynamic channel weighting by gesturing speed.
 
 \section{Functions}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{WGKnormal}
+\caption{Word-gesture keyboard}
+%\label{fig:machine}
+\end{figure}
+    
 \subsection{Text input}
 There should be two text input methods for the user. One is the input of words with gestures, the other one is the input of single characters by tapping single keys.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{WGKwrite}
+\includegraphics[width=0.4\textwidth]{WGKsuggestions}
+\caption{left: the user writes the word "hello" as gesture, right: user gets recommended words for "and"}
+\label{fig:write_suggestions}
+\end{figure}
+
 \subsubsection{With Gestures}
-The most important, but also most basic function our word-gesture keyboard provides, is the writing of words with gestures. A user can press and hold the trigger button of a VR controller inside the keyboard's hitbox and start making a gesture on it. The user will see a TODO: SEE COLOR. red/purple line, that is drawn on the keyboard where they move. This helps them to keep track of the trace they drew. When the user wants to finish the gesture, they need to release the trigger of the controller. At this moment, our program starts to evaluate the 5 words with the best match to the user inputted graph. The one with the highest confidence score will be written into the text field. The other 4 are displayed at the keyboard TODO: CITE TO PICTURE WITH RECOMMENDATIONS., such that the user can also choose between them. When the user chooses one of these 4 words, the word that has been written into the text field before, is getting replaced by the user's chosen word and the key, where the chosen word was written, will then display the replaced word.\\
+The most important, but also most basic function our word-gesture keyboard provides, is the writing of words with gestures. A user can press and hold the trigger button of a VR controller inside the keyboard's hitbox and start making a gesture on it. The user will see a TODO: SEE COLOR. red/purple line, that is drawn on the keyboard where they move. This helps them to keep track of the trace they drew. When the user wants to finish the gesture, they need to release the trigger of the controller. At this moment, our program starts to evaluate the 5 words with the best match to the user inputted graph. The one with the highest confidence score will be written into the text field. The other 4 are displayed at the keyboard (fig \ref{fig:write_suggestions} right), such that the user can also choose between them. When the user chooses one of these 4 words, the word that has been written into the text field before, is getting replaced by the user's chosen word and the key, where the chosen word was written, will then display the replaced word.
 \subsubsection{As Single Characters}
-If the wanted word is not in the lexicon, there will not be any entry in the "sokgraph\_\textit{layout}.txt". Therefore, our algorithm will not be able to get this wanted word as best match, hence it can not be written as gesture. For this case, we need a method to input single characters. Fortunately with our word-gesture keyboard this almost works without additional work. If the single letters are as graphs in the layout files, TODO: DEFINE LAYOUT FILES AS SOKRAPH\_LAYOUT.TXT SOMEWHERE. the user is more or less able to write single letter with a gesture. This "gesture" would just be a point on the right key, hence a single click at the right position. But there might be a little inconvenience. This is caused by the fact, that we work with distances. The distance from one letter to another is not too big. And if for example the user wants to write an "e" but presses the key with the "e" on it on its left side and not perfectly in the middle, our system would also evaluate that aside from "e", also "w" and "we" are words, the user might have intended to write (on a conventional qwertz or qwerty layout). To get rid of this, our system checks, if the user inputted graph's bounding box is smaller than TODO: HOW MUCH SMALLER?. It recognizes, that the user wants to write a single letter, and then takes the best match. To get back to the example, "we" would be discarded and "e" would get a higher score than "w", because of a smaller location channel distance. Therefore, the written "word" in this case would be "e".\\
+If the wanted word is not in the lexicon, there will not be any entry in the "sokgraph\_\textit{layout}.txt". Therefore, our algorithm will not be able to get this wanted word as best match, hence it can not be written as gesture. For this case, we need a method to input single characters. Fortunately with our word-gesture keyboard this almost works without additional work. If the single letters are as graphs in the layout files, TODO: DEFINE LAYOUT FILES AS SOKRAPH\_LAYOUT.TXT SOMEWHERE. the user is more or less able to write single letter with a gesture. This "gesture" would just be a point on the right key, hence a single click at the right position. But there might be a little inconvenience. This is caused by the fact, that we work with distances. The distance from one letter to another is not too big. And if for example the user wants to write an "e" but presses the key with the "e" on it on its left side and not perfectly in the middle, our system would also evaluate that aside from "e", also "w" and "we" are words, the user might have intended to write (on a conventional qwertz or qwerty layout). To get rid of this, our system checks, if the user inputted graph's bounding box is smaller than TODO: HOW MUCH SMALLER?. It recognizes, that the user wants to write a single letter, and then takes the best match. To get back to the example, "we" would be discarded and "e" would get a higher score than "w", because of a smaller location channel distance. Therefore, the written "word" in this case would be "e".
 
 \subsection{Create New Layouts}
 Another function is the creation of own layouts. A layout text file exists, that contains all available layouts. The user can create as many new layouts as they want to. To create a new one, the user has to write the new layout's name on the first line and on the following lines write the characters in an order, in which they want to have them on the keyboard. All the unicode characters should be working, but two. In the current implementation, one whitespace is used to declare the position of the spacebar and the "<" character is used for the backspace key. The layout text file gets read at the start of the program, so it cannot be edited while the program is running, or to be precise, the changes will not be recognized during runtime. One smaller thing we implemented is, that at the start of the program all characters used in the layout not yet in the lexicon text file and "sokgraph\_\textit{layout}.txt" are being added. Without doing this, the user would not be able to input any single special character with their newly created keyboard, because the system simply would not find it in the "sokgraph\_\textit{layout}.txt" file. During the runtime, the user then is able to switch between available layouts.
 
 \subsection{Options}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{WGKoptions}
+\caption{The options button with all the sub-buttons activated}
+%\label{fig:machine}
+\end{figure}
+
 We implemented an options button for out keyboard. It is marked with a black gear. The user can click on it with the trigger button of the controller, when being in the hitbox of it. Then, three new buttons appear. These are the currently available options. One is to add new words, one to change the currently selected layout and the last one to scale the keyboard.
 
 \subsubsection{Add Words}
@@ -37,7 +61,7 @@ There are other two functions that can be found under the options. One is to cha
 The other function is the ability to change the layout. The user gets a list of all available layouts, when pressing the "change layout" button. They then can click on one of these layouts and the keyboard will change its appearance.
 
 \subsection{Other}
-To end the implementation part, we will shortly talk about the last function, the ability to grab andd move the keyboard. This means, the user can grab the keyboard, move it around in the room and rotate it as they want. We were able to do this thanks to script that already existed in vitrivr TODO: HOW TO REFERENCE THIS? and did not have to implement anything on our own.
+To end the implementation part, we will shortly talk about the last function, the ability to grab and move the keyboard. This means, the user can grab the keyboard, move it around in the room and rotate it as they want. We were able to do this thanks to script that already existed in vitrivr TODO: HOW TO REFERENCE THIS? and did not have to implement anything on our own.
 
 
 
