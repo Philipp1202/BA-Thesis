@@ -1266,6 +1266,20 @@ INPUT Chapters\Evaluation.tex
 INPUT .\Chapters\Evaluation.tex
 INPUT .\Chapters\Evaluation.tex
 INPUT Chapters\Evaluation.tex
+INPUT .\Figures\\WPM comparison.png
+INPUT .\Figures\\WPM comparison.png
+INPUT Figures\\WPM comparison.png
+INPUT .\Figures\\WPM comparison.png
+INPUT .\Figures\\WPM comparison.png
+INPUT .\Figures\\WPM comparison.png
+INPUT .\Figures\\WPM comparison.png
+INPUT .\Figures\\Comparison_yesno.png
+INPUT .\Figures\\Comparison_yesno.png
+INPUT Figures\\Comparison_yesno.png
+INPUT .\Figures\\Comparison_yesno.png
+INPUT .\Figures\\Comparison_yesno.png
+INPUT .\Figures\\Comparison_yesno.png
+INPUT .\Figures\\Comparison_yesno.png
 INPUT .\Chapters\Conclusion.tex
 INPUT .\Chapters\Conclusion.tex
 INPUT .\Chapters\Conclusion.tex
