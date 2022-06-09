@@ -2,3 +2,4 @@ bigrams
 hitbox
 vitrivr-VR
 vitrivr
+boxplot

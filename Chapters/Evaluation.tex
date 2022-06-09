@@ -26,7 +26,7 @@ They were also informed about the backspace. So, that if they use the backspace 
 We also told the participants, that we have enough time and that they should not hurry, but rather look, that the inputted words are correct. Because if they are not correct, they have to use the backspace a lot of times.
 
 \section{Results}
-Now, we want to talk about the results and some statistics.\\
+Now, we want to talk about the results and some statistics we gained through the evaluation.\\
 
 \subsection{System Usability Scale}
 First, we begin with the results of the SUS questions. These ten questions were:\\
@@ -40,6 +40,7 @@ First, we begin with the results of the SUS questions. These ten questions were:
 8. I found the system very cumbersome to use\\
 9. I felt very confident using the system\\
 10. I needed to learn a lot of things before I could get going with this system
+\iffalse
 \begin{table}[ht!]
     \centering
     \begin{tabular}{cccc} \toprule
@@ -59,19 +60,29 @@ First, we begin with the results of the SUS questions. These ten questions were:
     \caption{Results from the System Usability Scale (SUS) from the questionnaire (first ten questions)}
     \label{tab:table}
 \end{table}
+\fi
 
-Question 9 got the worst score, but with it being a 4.09 out of 5, it is still pretty good. From these values, we can calculate a usability score. From the questions, whose perfect score is 5, we have to subtract 1 from the average score. And from the other questions we have to subtract their average score from 5. At the end, we have to sum up these values and multiply them by 2.5. Our calculated usability score is 88.18. This is a high score, and we are really satisfied with it.\\
-We also have two other questions about the scale and add word functions:\\
+\begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{SUS_scoring.png}
+    \caption{System Usability Scale with all the given points per question from every participant}
+    \label{fig:SUS_score}
+\end{figure}
+
+Question 9 got the worst score, but with it being a 4.09 out of 5, it is still pretty good. From these values, we can calculate a usability score. Every question with an even number is a negative one. That means, a score of one or ``strongly disagree'' is the highest possible. For the other questions, a score of five or ``strongly agree'' is the best possible score. So, from the odd numbered questions we have to subtract 1 from the average score. And for the even numbered questions we have to subtract their average score from 5. At the end, we have to sum up these ten newly calculated values and multiply them by 2.5. Our calculated usability score is 88.18. This is a high score, because from a score of 85.5 points, one talks about an excellent system usability. Therefore, we are really satisfied with the results of this.\\
+We do also have two other questions about the scale and the ``add word'' function:\\
 11. The function to add words is well implemented and easy to use\\
 12. The function to scale the keyboard is unnecessary\\
-Question 11 got a score of 4.55 out of 5 and question 12 got a score of 2.18, whereby 1 would be ideal. We conclude from these two questions, that the ``add word function'' makes a good impression whereas the scale function does not perform so well.\\
+Question 11 got a score of 4.55 out of 5 and question 12 got a score of 2.18, whereby 1 would be ideal. We conclude from these two questions, that the ``add word'' function makes a good impression whereas the scale function does not perform so well.\\
 
 \subsection{Writing Speed}
-In the following table you can see how fast in average the participants were able to write their 15 phrases. We do also list the fastest and slowest value. Everything is measured in words per minute, which is calculated as follows:
+One important thing of our evaluation is to find out, how fast users can write with our word-gesture keyboard. As unit to measure this values, we take the ``words per minute'' wpm. We calculate the wpm with following formula: 
+
 \begin{equation}
     WPM = \frac{\mid T \mid}{S} \times 60 \times \frac{1}{5}
 \end{equation}
 where $T$ is all the phrases a participant had to write, hence $\mid T \mid$ is the number of characters a participant had to write. $S$ is the time in seconds they used to write all 15 phrases.\\
+
 \begin{table}[ht!]
     \centering
     \begin{tabular}{cccc} \toprule
@@ -91,28 +102,134 @@ where $T$ is all the phrases a participant had to write, hence $\mid T \mid$ is 
         average&12.75&6.55&23.06\\
         \bottomrule
     \end{tabular}
-    \caption{average WPM, lowest WPM and highest WPM per participant. For the first three, we failed to get this data.}
+    \caption{average wpm, lowest wpm and highest wpm per participant. For the first three, we failed to get this data.}
     \label{tab:WPM}
 \end{table}
-\clearpage
 
-\begin{figure}
+In Table \ref{tab:WPM} you can see how fast in average the participants were able to write their 15 phrases. We do also list the lowest and highest value. Everything is measured in words per minute.
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{WPM comparison.png}
-    \caption{average WPM, lowest WPM and fastest WPM per participant 4-11}
+    \includegraphics[width=0.9\textwidth]{wpm_boxplot.png}
+    \caption{for participants 4-11: lowest wpm, 25\% quantile, average wpm, 75\% quantile and highest wpm}
     \label{fig:WPM}
 \end{figure}
-As we can see in fig \ref{fig:WPM}, the faster the participant is in average, most of the time they do also have higher lowest and highest WPM values. The lowest WPM values mostly come about because a participant made a mistake and had to delete a lot and basically write the phrase two times. On the other hand, the highest WPM values come about because a participant made no mistake in writing the phrase. \\
+To understand the values of Table \ref{tab:WPM} a bit better, we make a so-called boxplot for every participant, for whom we have the data. We can see in fig \ref{fig:WPM}, the higher the participant's median, most of the time they do also have higher lowest wpm value. The lowest wpm values mostly come about because a participant made a mistake and had to delete a lot and basically write the phrase two times. On the other hand, the highest WPM values come about because a participant made no mistake in writing the phrase. The rectangle in the middle of the two bars shows how consistent or inconsistent a participant's writing speed is. The lower bound is the 25\% quantile, the upper bound the 75\% quantile. This means, if the rectangle is less high, the writing speed is more consistent.\\
+We cannot really find anything that combines writing speed and consistency.\\
 
-Next, we want to look at the WPM values of the users and their experience on one hand in VR writing and on the other hand in word-gesture keyboards:\\
-\begin{figure}
+Next, we want to look at the wpm values of the users and their experience in, on one hand VR writing and on the other hand word-gesture keyboards.\\
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Comparison_yesno.png}
+    \includegraphics[width=0.9\textwidth]{Comparison_yesno.png}
     \caption{Average WPM per group of participant, grouped by their experience in VR writing and word-gesture keyboards}
     \label{fig:WPM_yesno}
 \end{figure}
-\\
 
-CALCULATE KEYBOARD AND USER ERROR RATE (\#WRONG CHARACTERS OF WORDS NOT FOUND VS NOT CORRECTED)
+In Fig \ref{fig:WPM_yesno} we can see, that the prior knowledge, that some participants have, did not really help them to write faster. In fact, the fastest group was the one, that is experienced with word-gesture keyboards, but not with writing in VR. But we think this is due to the small sizes of the different groups.\\
+
+Another thing we wanted to analyze is the WPM value compared to the age:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{age_wpm.png}
+    \caption{wpm values sorted by age groups of five years. The 20-24 and 25-29 groups also have a standard deviation error bar, because they contain of five and four participants. The 35-39 and 50-54 groups do not have an error bar, since each of them only contains of one participant}
+    \label{fig:WPM_age}
+\end{figure}
+
+We can observe in Fig \ref{fig:WPM_age}, that at least among our participants, the wpm value decreases with the increase in age. This means, the older participants were a bit slower than the younger ones. 
+
+\subsection{Error Rate}
+For the measurement of the error rate, we calculate a user error rate and a system error rate. For the user error rate, we look at the amount of backspaces a participant had to use and the amount of words/character that were written wrong in all 15 phrases. For the system error rate we look at the words the system did not recognize at all, which means not as best match, nor as one of the four choosable suggestions and count their number of characters.\\
+
+\subsubsection{Most Frequent Error Words}
+We looked into all the words that were not the best match, so all the words a participant either corrected or not and also the ones that were not even in the suggestions. The top ten such words are:
+\begin{table}[ht!]
+    \centering
+    \caption{most frequent error words}
+    \begin{tabular}{cc} \toprule
+        word&times wrong\\ \midrule
+        the & 53\\
+        is & 17\\
+        to & 14\\
+        of & 12\\
+        in & 9\\
+        for & 8\\
+        do & 5\\
+        all & 3\\
+        more & 3\\
+        see & 2\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:error_words}
+\end{table}
+
+\subsubsection{User and Backspace Error Rate}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{backspace_error2.png}
+    \caption{percentage of backspaces in relation to all characters in phrases compared to the wpm}
+    \label{fig:error_backspace}
+\end{figure}
+
+In Fig \ref{fig:error_backspace} we show how many backspaces were used at which wpm value. We can not tell really much about it. But one thing that can be seen is, that the participant with the lowest wpm seemed to be very careful not overlooking wrong words that could be corrected by choosing the right suggestion. The participant with the highest wpm has the second-lowest usage of backspaces. Therefore, they seem to get used to the system and its suggestions words very fast and good.\\
+Overall, there seems to be a little trend, that participants with higher wpm values had to use fewer backspaces than participants with lower wpm values.
+
+\begin{figure}[H]
+    \makebox[\textwidth][c]{
+        \centering
+        \subbottom[Not corrected characters with wpm\label{fig:error_user:error_user1}]{\includegraphics[width=0.6\textwidth]{user_error3_1.png}}\hspace{-3.0em}
+        \subbottom[as (a), but without ``the'', ``in'' and ``more''\label{fig:error_user:error_user2}]{\includegraphics[width=0.6\textwidth]{user_error3_2.png}}
+    }
+    \makebox[\textwidth][c]{
+        \centering
+        \subbottom[Not corrected words with wpm\label{fig:error_user:error_user3}]{\includegraphics[width=0.6\textwidth]{user_error3_3.png}}\hspace{-3.0em}
+        \subbottom[as (c), but without ``the'', ``in'' and ``more''\label{fig:error_user:error_user4}]{\includegraphics[width=0.6\textwidth]{user_error3_4.png}}
+    }
+    \caption{Plots of four Turing machines}
+    \label{fig:error_user}
+\end{figure}
+
+In Fig \cref{fig:error_user:error_user1} and Fig \cref{fig:error_user:error_user2} we count the characters of the words, a participant did not correct, although they had the chance to do it with the suggestions. On the y-axis, we look at the percentage, that these characters make up in comparison to all characters the participant had to write in all 15 phrases. In Fig \cref{fig:error_user:error_user1} we look at all characters. But a lot of the errors came from the words ``the'', ``in'' and ``more'', that could have been prevented as mentioned in Section TODO: MENTION TO SECTION THAT HAS TO BE WRITTEN. Therefore, in \cref{fig:error_user:error_user2} we look at the errors without consider these three words.\\
+In the figures \cref{fig:error_user:error_user3} and \cref{fig:error_user:error_user4} we do the same, but without counting the characters of the ``error words'' but just look at the number of them.\\
+One thing that can be observed is, that in the two lower figures of Fig \Cref{fig:error_user} the percentage values are almost the same as in the two upper ones. This means that the words that were not corrected, have on average about the same length as the average length of all words from the respective 15 phrases is.\\
+One thing that can be observed at the left figures of Fig \Cref{fig:error_user} is that apart from one exception the percentage rate of not corrected words/characters is higher at lower wpm than it is at higher wpm. One obvious reason for this could be, that if words early in phrases were not corrected, a user had to delete the whole phrase back to the wrong word, and had to write all again. Therefore, it would make sense, that the faster participants made fewer errors, hence their risk of not correcting a word in the beginning of a phrase is lower. And then, they would not decrease their average wpm so much.
+
+\subsubsection{System Error Rate}
+\begin{figure}[H]
+    \makebox[\textwidth][c]{
+        \centering
+        \subbottom[with characters\label{fig:error_system:error_system1}]{\includegraphics[width=0.6\textwidth]{system_error2_1.png}}\hspace{-3.0em}
+        \subbottom[with words\label{fig:error_system:error_system2}]{\includegraphics[width=0.6\textwidth]{system_error2_2.png}}
+    }
+    \caption{percentage of characters/words that were not found by the system neither as best match nor as suggestion}
+    \label{fig:error_system}
+\end{figure}
+
+In \Cref{fig:error_system} we can see what percentage of the characters/words were not found by the system, neither directly as best match, nor as word suggestions, which a participant could choose. We decide to name this error the system error, although a participant could have done a really bad gesture which then would not really be the system's fault to not find a word.\\
+We can see, that in \cref{fig:error_system:error_system1} the percentages are much higher than in \cref{fig:error_system:error_system2}. This means that the words, which the system did not find a word, need to be longer than an average word in the written phrases. A reason for this might be, that often gestures for long words did not succeed. If a participant made some little curves too much in a gesture for a long word, the chances are lower, that the system can detect the right word, whereas for a small word the chance is higher, that the word gets found. Because the gesture can be much shorter and therefore fewer inaccuracies from a participant will happen.\\
+For the wpm and the percentages we can not detect any correlation. It seems, that these two values are not connected with each other. 
+
+\subsection{Feedback}
+The full list including all verbatim feedback from every participant can be found in the appendix. Here, we just want to highlight the most frequently addressed points.\\
+Some participants find the best matches and suggestions sometimes confusing. The most mentioned example is that ``thee'' is preferred over ``the''. The spaces/ current position are another thing that is frequently addressed. For some participants, it was unclear where they were to write. They suggest to implement some kind of visual indication, that indicates, where the cursor currently is. We also got a lot of praise and most of the time we saw a cheerful face when the VR headset got taken off.
 
 \section{Discussion}
+In this section we want to compare our results to other works' results.
+First, we begin with the wpm. Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} evaluate in their paper four different VR input methods, a raycasting, drum-like, head-directed input and a split keyboard. The first one is a keyboard where a user can select letter by pointing a ray with a controller on it. For the second one the controllers simulate drum sticks in VR and letters have to be pressed by them. For the third keyboard a user has to aim with the head for the letters and press a button on the controller to input. The last keyboard is one, that is split into two halves, one assigned to each controller. 
+\begin{table}[ht!]
+    \centering
+    \caption{most frequent error words}
+    \begin{tabular}{cc} \toprule
+        text input method&wpm\\ \midrule
+        Raycasting keyboard& 16.65\\
+        Drum-like keyboard& 21.01\\
+        Head-directed input keyboard& 10.83\\
+        Split keyboard& 10.17\\
+        Word-gesture keyboard& 12.75\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:wpm_compare}
+\end{table}
+
+In Table \ref{tab:wpm_compare} we listed the results of Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} and our measurement of the wpm value. They had a similar approach to the evaluation as we did, with one difference. They did use the same ten phrases for every participant and keyboard type.\\
+As we can see, our keyboard lines up in the middle. It is not the one with the lowest wpm, but also not the one with the highest.
