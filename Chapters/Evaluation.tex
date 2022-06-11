@@ -143,7 +143,7 @@ For the measurement of the error rate, we calculate a user error rate and a syst
 
 \subsubsection{Most Frequent Error Words}
 We looked into all the words that were not the best match, so all the words a participant either corrected or not and also the ones that were not even in the suggestions. The top ten such words are:
-\begin{table}[ht!]
+\begin{table}[H]
     \centering
     \caption{most frequent error words}
     \begin{tabular}{cc} \toprule
@@ -162,6 +162,9 @@ We looked into all the words that were not the best match, so all the words a pa
     \end{tabular}
     \label{tab:error_words}
 \end{table}
+
+As we can see in Table \ref{tab:error_words}, the word, that is responsible for most of the errors, is ``the''. It caused 53 errors. We can also see in this list other words, that could have been avoided by a better implementation. For example ``ìn'' and ``more''.
+The best match for these words were ``thee'', ``inn'' and ``moore'', which are words, that do not appear that much in plain language. But we want to go more in depth on this topic later on.
 
 \subsubsection{User and Backspace Error Rate}
 \begin{figure}[H]
@@ -216,6 +219,36 @@ Some participants find the best matches and suggestions sometimes confusing. The
 \section{Discussion}
 In this section we want to compare our results to other works' results and talk about some changes we did because of the feedback and results.
 
+\subsubsection{Total ER}
+As last error, we want to calculate the Total ER. 
+\begin{equation}
+    Total\ ER = \frac{INF + IF}{C + INF + IF} \times 100\%
+\end{equation}
+
+$C$ is the number of correct keystrokes. Here we take the number of characters the 15 phrases a participnt had to input had. $INF$ denotes the number of incorrect and not fixed characters in the transcribed text. Because we only allowed to go to the next phrase, if the last one was fully correct, we take a value of 0. $IF$ denotes incorrect but fixed characters. For this we take the number of characters of the words a user corrected with the suggestion words, because the system did not recognize the right word as best match. The following table shows our calculated results:
+\begin{table}[ht!]
+    \centering
+    \caption{Total ER per participant}
+    \begin{tabular}{cc} \toprule
+        participant&total ER& $\sigma$\\ \midrule
+        1&value&value\\
+        2&value&value\\
+        3&value&value\\
+        4&value&value\\
+        5&value&value\\
+        6&value&value\\
+        7&value&value\\
+        8&value&value\\
+        9&value&value\\
+        10&value&value\\
+        11&value&value\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:wpm_compare}
+\end{table}
+
+TODO: TALK ABOUT TOTAL ER
+
 \subsection{Result Comparison}
 First, we begin with the wpm. Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} evaluate in their paper four different VR input methods, a raycasting, drum-like, head-directed input and a split keyboard. The first one is a keyboard where a user can select letter by pointing a ray with a controller on it. For the second one the controllers simulate drum sticks in VR and letters have to be pressed by them. For the third keyboard a user has to aim with the head for the letters and press a button on the controller to input. The last keyboard is one, that is split into two halves, one assigned to each controller. 
 \begin{table}[ht!]
@@ -235,5 +268,7 @@ First, we begin with the wpm. Boletsis and Kongsvik \cite{Boletsis2019Controller
 
 In Table \ref{tab:wpm_compare} we listed the results of Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} and our measurement of the wpm value. They had a similar approach to the evaluation as we did, with one difference. They did use the same ten phrases for every participant and keyboard type.\\
 As we can see, our keyboard lines up in the middle. It is not the one with the lowest wpm, but also not the one with the highest.
+
+Another comparison we can do with the results of Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} is the total ER value. They got a value of TODO: INSERT THEIR TOTAL ER VALUE. Our calculated value is TODO: INSERT OUR TOTAL ER VALUE. TODO: COMPARE RESULTS.
 
 \subsection{New Implementations}
