@@ -2,3 +2,4 @@
 {"rule":"FIRST_OF_ALL","sentence":"^\\QFirst of all, it Independent of the details of the implementation, every word-gesture keyboard (also called slide-to-type keyboard) works with gestures.\\E$"}
 {"rule":"FIRST_OF_ALL","sentence":"^\\QFirst of all, it has to be Independent of the details of the implementation, every word-gesture keyboard (also called slide-to-type keyboard) works with gestures.\\E$"}
 {"rule":"FIRST_OF_ALL","sentence":"^\\QFirst of all, it does not Independent of the details of the implementation, every word-gesture keyboard (also called slide-to-type keyboard) works with gestures.\\E$"}
+{"rule":"DT_RB_IN","sentence":"^\\QFor the next calculation, we want to take a look at the not immediately corrected [][c] [Not corrected characters with wpm] [as (a), but without “the”, “in” and “more”] [][c] [Not corrected words with wpm] [as (c), but without “the”, “in” and “more”] Plots of four Turing machines\\E$"}
