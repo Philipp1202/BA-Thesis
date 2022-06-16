@@ -24,8 +24,8 @@ We told them that if they are close enough to the keyboard, then the color gets 
 To write, they do also have to be in the hitbox of the keyboard but not pressing and holding the grip button, but the trigger button. Then they have to make a gesture over the characters of the keyboard to write a word. We also told them, that if they do a full gesture and a word longer than one character is written, a space is automatically put behind the word. We also said to them, that single characters could be inputted by clicking on a key of the intended character. If they did so, no space is put, and they have to do it on their own. In the English language, this is particularly important for the words ``I'' and ``a''.\\
 We also told them, that if they made a gesture and a word was written, there may be one to four other choosable words. They could pick from them, if the word written in the text field is the wrong one. We especially mentioned the word ``the''. All the time ``thee'' would be written as the best match, therefore they would have to correct it every time.\\
 They were also informed about the backspace. So, that if they use the backspace button after writing a word, the whole word gets deleted and afterwards only single characters get deleted.\\
-We also told the participants, that we have enough time and that they should not hurry, but rather look, that the inputted words are correct. Because if they are not correct, they have to use the backspace a lot of times.
-
+We also told the participants, that we have enough time and that they should not hurry, but rather look, that the inputted words are correct. Because if they are not correct, they have to use the backspace a lot of times.\\
+In total for the eleven participants, 165 phrases were used. The average word length was 4.16 with the minimum length of 1 and a maximum length of 12. In total, 856 words were written, and it consisted of 460 unique words. We also made sure before the evaluation, that all the words in these phrases are in our word lexicon, such that the participants could write every word with a gesture.
 \section{Results}
 Now, we want to talk about the results and some statistics we gained through the evaluation.\\
 
@@ -110,7 +110,7 @@ where $T$ is all the phrases a participant had to write, hence $\mid T \mid$ is 
     \label{tab:WPM}
 \end{table}
 
-In Table \ref{tab:WPM} you can see how fast in average the participants were able to write their 15 phrases. We do also list the lowest and highest value. Everything is measured in words per minute.
+In Table \ref{tab:WPM} you can see how fast in average the participants were able to write their 15 phrases. We do also list the lowest and highest value. Everything is measured in words per minute. 
 
 \begin{figure}[H]
     \centering
@@ -120,6 +120,7 @@ In Table \ref{tab:WPM} you can see how fast in average the participants were abl
 \end{figure}
 To understand the values of Table \ref{tab:WPM} a bit better, we make a so-called boxplot for every participant, for whom we have the data. We can see in fig \ref{fig:WPM}, the higher the participant's median, most of the time they do also have higher lowest wpm value. The lowest wpm values mostly come about because a participant made a mistake and had to delete a lot and basically write the phrase two times. On the other hand, most of the highest WPM values come about because a participant made no mistake in writing the phrase. The rectangle in the middle of the two bars shows how consistent or inconsistent a participant's writing speed is. The lower bound is the 25\% quantile, the upper bound the 75\% quantile. This means, if the rectangle is less high, the writing speed is more consistent.\\
 We cannot really find anything that combines writing speed and consistency by looking at our measurements.\\
+As mentioned above, if the participants only recognize an error at the beginning of the phrase when they almost finished it, they have to use a lot of backspaces and more or less have to write the phrase a second time. These can pull down the average wpm a lot. Therefore, we calculate the average wpm for the participants 4-11, where we only look at ``perfect`` phrases, that were written without using a backspace. First of all, the average wpm for these eight participants over all phrases is 12.94. The average wpm of these ``perfect'' phrases only is 16.53, which is about 28\% higher. 
 
 Next, we want to find out, if the writing speed of the users has something to do with their experience in, on one hand VR writing and on the other hand word-gesture keyboards.\\
 
@@ -143,10 +144,10 @@ Another thing we wanted to analyze is the writing speed compared to the age:
 We can observe in Fig \ref{fig:WPM_age}, that at least among our participants, the wpm value decreases with the increase in age. This means, the older participants were a bit slower than the younger ones. 
 
 \subsection{Error Rate}
-In this section, we will look at different error rates. First of all, we want to find out, which words caused the most errors. Then we investigate some errors caused by the participants. At the end of this section, we take a look at the errors mostly caused by the system's condition.\\
+In this section, we will look at different error rates. First of all, we want to find out, which words caused the most errors. Then we investigate some errors caused by the participants. At the end of this section, we take a look at the errors mostly caused by the system's condition.
 
 \subsubsection{Most Frequent Error Words}
-We looked into all the words that were not the best match, so all the words a participant either corrected or not and also the ones that were not even in the suggestions. The top ten such words are:
+We look into all the words that were not the best match, so all the words a participant either corrected or not and also the ones that were not even in the keyboard's word suggestions. The top ten such words are:
 \begin{table}[H]
     \centering
     \caption{most frequent error words}
@@ -167,28 +168,39 @@ We looked into all the words that were not the best match, so all the words a pa
     \label{tab:error_words}
 \end{table}
 
-As we can see in Table \ref{tab:error_words}, the word, that is responsible for most of the errors, is ``the'', which caused 53 errors. In this list, we can also see other words, that could have been avoided by a better implementation. For example ``ìn'' and ``more''.
-The best match for these words were ``thee'', ``inn'' and ``moore'', which are words, that do not appear that much in plain language. But we want to go more in depth on this topic later on.
+As we can see in Table \ref{tab:error_words}, the word that is responsible for most of the errors is ``the'', which caused 53 of them. In this list, we can also see other words whose errors can be avoided by a better implementation. For example ``ìn'' and ``more''. The best match, when a participant wanted to write these words, were ``thee'', ``inn'' and ``moore'', which are words, that do not appear that much in plain language. For other words like ``to'' or ``of'', whose best matches were ``too'' or ``off'', it is maybe not as easy to get the right word. Because all of them appear fairly often in plain language.
 
-\subsubsection{User and Backspace Error Rate}
+\subsubsection{Backspace Error Rate}
+The erroneous keystroke error rate (EKS ER) \cite{ArifTextEntry} measures the ratio of the total number of erroneous keystrokes to the length of the phrase that has to be written. For our calculations, we will take a similar formula but not exactly the one for the EKS ER. In another paper, Chen et al. \cite{10.1145/3290607.3312762} also used a variant of EKS ER. Instead of the erroneous keystrokes, they took the number of times the backspace key was used. We call this the ``backspace error rate''.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{backspace_error2.pdf}
-    \caption{percentage of backspaces in relation to all characters in phrases compared to the wpm}
+    \makebox[\textwidth][c]{
+        \centering
+        \subbottom[backspace error rate compared to wpm\label{fig:error_backspace:error_backspace1}]{\includegraphics[width=0.6\textwidth]{backspace_error2.pdf}}\hspace{-3.0em}
+        \subbottom[a boxplot for the backspace error rate over all participants. The orange line is for the median, the rectangle shows the 25\% and 75\% quartiles, and the upper and lower whiskers show the maximum and minimum.
+        \vspace{-3em}
+        \label{fig:error_backspace:error_backspace2}]{\includegraphics[width=0.6\textwidth]{ekser_boxplot.pdf}}
+    }
+    \vspace{2em}
+    \caption{shows the backspace error rate in two different ways. (a) with a comparison to the wpm of each participant and (b) a boxplot combining all participants' backspace error values.}
     \label{fig:error_backspace}
 \end{figure}
 
-In Fig \ref{fig:error_backspace} we show how many backspaces were used in relation to all written characters at which wpm value. We can not tell really much about it. But one thing that can be seen is, that the participant with the lowest wpm seemed to be very careful not overlooking wrong words that could be corrected by choosing the right suggestion. The participant with the highest wpm has the second-lowest percentual usage of backspaces. Therefore, they seem to get used to the system and its suggestions words very fast and good.\\
-Overall, there seems to be a little trend, that participants with higher wpm values had to use fewer backspaces than participants with lower wpm values.\\
+In \Cref{fig:error_backspace:error_backspace1} we show which wpm value was reached at which backspace error rate. We can not find much of a correlation. But one thing that can be seen is, that the participant with the lowest wpm seemed to be very careful not overlooking wrong words that could be corrected by choosing the right keyboard suggestion. The participant with the highest wpm has the second-lowest percentual usage of backspaces. Therefore, they seem to get used to the system and its suggestion words very fast and good. Overall, there seems to be a little trend, that participants with higher wpm values had to use fewer backspaces than participants with lower wpm values.\\
+In \Cref{fig:error_backspace:error_backspace1} we can see that the median value is around 12.5\%. In fact, the average backspace error is 12.65\%. This means, for every input of an amount of words with 100 correct characters about 13 backspaces were used.\\
 
-The next thing we want to calculate is the Total ER according to Soukoreff and MacKenzie \cite{10.1145/642611.642632}. First of all, we have to clarify, that we go for a bit of another approach regarding the transcribed text. In the Section \ref{sec:eva_task} we mentioned that the phrase, a participant wrote, had to match exactly the given phrase, otherwise it would not go to the next one. For the measure of the total ER value, we take the transcribed text as if a participant would not have been able to press the backspace. With only one exception, the backspace would have been allowed, if neither the best match nor the word suggestions had the right word and a wrong one is set. This means, the errors the participants did not correct immediately with the keyboard word suggestions count to the $INF$ value of the following formula: 
+\subsubsection{Total ER}
+\label{sec:total_er}
+The next thing we calculate is the Total ER according to Soukoreff and MacKenzie \cite{10.1145/642611.642632}. First of all, we have to clarify, that for this calculation we take another look attention the transcribed text than we did in the execution of the evaluation. In the Section \ref{sec:eva_task} we mentioned that the phrase, a participant wrote, had to correspond exactly to the given phrase, otherwise it would not have gone to the next one. For the measure of the total ER value, we take the transcribed text as if a participant would not have been able to press the backspace. With only one exception, the backspace would have been allowed, if neither the best match nor the word suggestions had the right word and a wrong one is written. For the total ER value, we take following formula:
 
 \begin{equation}
     Total\ ER = \frac{INF + IF}{C + INF + IF} \times 100\%
 \end{equation}
 
-Where $C$ is the number of correct keystrokes. Here we take the number of correct characters of each 15 phrases a participant had to input. $INF$ denotes the number of incorrect and not fixed characters in the transcribed text. For $INF$ we take from the words not corrected by a participant (with the transcribed text variant mentioned above). We do not count every character of such an error word as error, but we calculated the minimum string distance (MSD) between the error word and the word it should be. The MSD value is the number of single character insertions, deletions or substitutions to get from the wrong word to the right one. Finally, $IF$ denotes incorrect but fixed characters. We will set this value to 0, because for this calculation, we do not see it as an error, if a participant corrected the word immediately with a word suggestion from the keyboard. The following table shows our calculated results:
-\label{sec:total_er}
+Where $C$ is the number of correct characters in the transcribed text, $INF$ denotes the number of incorrect and not fixed characters in the transcribed text compared to the given phrases, identified with the minimun string distance and $IF$ denotes the keystrokes in the input stream, that are not in the transcribed text and not editing keys.\\
+(However, we will not take these values exactly as stated above as Soukoreff and MacKenzie \cite{10.1145/642611.642632} did. For $C$ we take the number of correct characters of each 15 phrases a participant had to input. This means, we take the amount of characters that had to be written and subtract one for every character that is not in the previously defined transcribed text, but should be. One thing counting into this are missing spaces most of the time after words with one character as ``I'' or ``a''. Also, some characters from not immediately corrected words can count into it.\\
+Next, for $INF$ we do not count every character of an error word as error, but we calculate the minimum string distance (MSD) between the error word and the word it should be. The MSD value is the number of single character insertions, deletions or substitutions to get from the wrong word to the right one. For example, to get from ``thee'' to ``the'', we need one deletion, therefore the MSD value would be 1.\\
+Finally, for $IF$ we count the amount of backspaces a participant used to delete a wrong word, where the correct one was not even in the keyboard's word suggestion.) The following table shows our calculated results:
 \begin{table}[H]
     \centering
     \caption{Total ER per participant}
@@ -197,58 +209,59 @@ Where $C$ is the number of correct keystrokes. Here we take the number of correc
         1&3.15\%\\
         2&2.95\%\\
         3&1.82\%\\
-        4&2.26\%\\
-        5&2.81\%\\
+        4&2.54\%\\
+        5&3.06\%\\
         6&2.18\%\\
-        7&2.24\%\\
-        8&1.69\%\\
-        9&1.55\%\\
-        10&0.53\%\\
+        7&2.73\%\\
+        8&2.25\%\\
+        9&1.81\%\\
+        10&1.05\%\\
         11&0\%\\\bottomrule
-        average&1.93\%\\
+        average&2.14\%\\
         \bottomrule
     \end{tabular}
-    \label{tab:wpm_compare}
+    \label{tab:total_er}
 \end{table}
-As we can see in Table \ref{tab:wpm_compare}, the calculated total ER values are quite low. The averge is only 1.93\% with a standarddeviation of 0.93. Later, we will compare these values with others from another paper.\\
+As we can see in Table \ref{tab:total_er}, the calculated total ER values are quite low. The averge is only 2.14\% with a standarddeviation of 0.91. Right now, we can not tell much about this, but later, we will compare these values with others from another paper.\\
 
-For the next calculation, we want to take a look at the not immediately corrected words together with the wpm. Firstly, we will do this with characters and then with the whole words. For the characters of an error word we take as in the previous calculation for the total ER the MSD values. Then we want to compare these with the same calculation, but without considering the errors happened because of ``the'', ``in'' and ``more''. We decide to remove these words, because they could be avoided through a small change in the best match calculations.
+\subsubsection{Participant Conscientiousness}
+For the next calculation, we investigate the percentage of not immediately corrected words together with the wpm. Firstly, we will do this with characters and then with the whole words. For the calculation with the characters of an error word we take the MSD values as we did in the previous calculation with the total ER. Then we want to compare these two with the same approach, but without considering the errors happened because of ``the'', ``in'' and ``more''. We decide to remove these three words, because they could be avoided by a small change in the best match calculations.
 \begin{figure}[H]
     \makebox[\textwidth][c]{
         \centering
         \subbottom[Not corrected characters with wpm\label{fig:error_user:error_user1}]{\includegraphics[width=0.6\textwidth]{user_error3_1.pdf}}\hspace{-3.0em}
-        \subbottom[as (a), but without ``the'', ``in'' and ``more''\label{fig:error_user:error_user2}]{\includegraphics[width=0.6\textwidth]{user_error3_2.pdf}}
+        \subbottom[As (a), but without ``the'', ``in'' and ``more''\label{fig:error_user:error_user2}]{\includegraphics[width=0.6\textwidth]{user_error3_2.pdf}}
     }
     \makebox[\textwidth][c]{
         \centering
         \subbottom[Not corrected words with wpm\label{fig:error_user:error_user3}]{\includegraphics[width=0.6\textwidth]{user_error3_3.pdf}}\hspace{-3.0em}
-        \subbottom[as (c), but without ``the'', ``in'' and ``more''\label{fig:error_user:error_user4}]{\includegraphics[width=0.6\textwidth]{user_error3_4.pdf}}
+        \subbottom[As (c), but without ``the'', ``in'' and ``more''\label{fig:error_user:error_user4}]{\includegraphics[width=0.6\textwidth]{user_error3_4.pdf}}
     }
-    \caption{(a) shows the percentage of characters calculated with the MSD from wrong words, that are not immediately corrected with the word suggestions, (b) is the same as (a) but ``the'', ``in'' and ``more'' errors are ignored, (c) same as (a) but not with characters, but with the words as whole, (d) same as (b) but not with characters, but with the words as whole}
+    \caption{(a) shows the percentage of characters calculated with the MSD from wrong words, that were not immediately corrected with the word suggestions. (b) is the same as (a) but errors from ``the'', ``in'' and ``more'' are ignored. (c) is the same as (a) but not with characters, but with the words as whole. (d) is the same as (b) but not with characters, but with the words as a whole}
     \label{fig:error_user}
 \end{figure}
 
-In Fig \cref{fig:error_user:error_user1} and Fig \cref{fig:error_user:error_user2} we calculate the MSD of the words, a participant did not correct, although they had the chance to do it with the suggestions. On the y-axis, we look at the percentage, that these characters make up in comparison to all characters the participant had to write in all 15 phrases. In Fig \cref{fig:error_user:error_user1} we look at all wrong words. But a lot of the errors came from the words ``the'', ``in'' and ``more'', that could have been prevented as mentioned before. Therefore, in \cref{fig:error_user:error_user2} we look at the errors without considering these three words.\\
-In the figures \cref{fig:error_user:error_user3} and \cref{fig:error_user:error_user4} we do the same, but without the MSD of the wrong words but just look at the number of them.\\
-We can see, that the percentage of characters that are not corrected lies between about 0-4\%. For the words, the percentage of not corrected ones lies between 0\% and about 12\% which is much higher. This is because we work with the MSD. If a word is wrong, it will not be totally wrong and consist of similar letters as the right word. Therefore, not the whole word's characters will be counted into that value.\\
+In \cref{fig:error_user:error_user1} and \cref{fig:error_user:error_user2} we calculate the MSD of the words, a participant did not correct, although they had the chance to do it with the keyboard's suggestions. On the y-axis, we look at the percentage, that these characters make up in comparison to all characters the participant had to write in all 15 phrases. In \cref{fig:error_user:error_user1} we look at all wrong words. But a lot of the errors came from the words ``the'', ``in'' and ``more'', that could have been prevented as mentioned before. Therefore, in \cref{fig:error_user:error_user2} we look at the errors without considering these three words.\\
+We can see that the percentage of characters that are not corrected lies between about 0-3.5\%. Overall we can observe that the percentages go a bit down from \cref{fig:error_user:error_user1} to \cref{fig:error_user:error_user2}. Looking at the wpm, we can say that the writing speed does not really affect the percentage of characters not immediately corrected and is to some extent the same for every participant.\\
+In \cref{fig:error_user:error_user3} and \cref{fig:error_user:error_user4} we do the same, but without the MSD of the wrong words but just look at the amount of them.\\
+For these two figures, we can observe that the percentages also drop if we do not consider the error of the three previously mentioned words. Here it makes a bigger difference than in \cref{fig:error_user:error_user1} and \cref{fig:error_user:error_user2}. Therefore, it seems that these three words do not contribute much to the total MSD value. 
+Another thing we can see, is that the percentage of not corrected words lies between 0\% and about 12\% which is much higher than the percentages for the characters. This is because we work with the MSD. If a word is wrong, most of the time, our keyboard will not write a totally wrong word, if the gesture is right to some extent. It will consist of similar letters as the right word. Therefore, not the whole word's characters will be counted into this value.\\
 %One thing that can be observed is, that in the two lower figures of \Cref{fig:error_user} the percentage values are almost the same as in the two upper ones. This means that the words that were not corrected, have on average about the same length as the average length of all words from the respective 15 phrases is.\\
 %One thing that can be observed at the left figures of Fig \Cref{fig:error_user} is that apart from one exception the percentage rate of not corrected words/characters is higher at lower wpm than it is at higher wpm. One obvious reason for this could be, that if words early in phrases were not corrected, a user had to delete the whole phrase back to the wrong word, and had to write all again. Therefore, it would make sense, that the faster participants made fewer errors, hence their risk of not correcting a word in the beginning of a phrase is lower. And then, they would not decrease their average wpm so much.
-Another thing we can observe is, that the percentages drop quite an amount, if we ignore the ``the'', ``in'' and ``more'' errors.\\
-To take another look at the participants' attention, we want to calculate the value of participant conscientiousness.
 
-\subsubsection{Participant Conscientiousness}
-As for the total ER, we also take the formula for the participant conscientiousness value from the paper of Soukoreff and MacKenzie \cite{10.1145/642611.642632}:
+To take another look at the participants' attention, we want to calculate the value of participant conscientiousness. As for the total ER, we also take the formula for the participant conscientiousness value from the paper of Soukoreff and MacKenzie \cite{10.1145/642611.642632}:
 \begin{equation}
     Participant\ Conscientiousness = \frac{IF}{INF + IF}
+    \label{eq:total_er}
 \end{equation}
 
-Normally, they would take the values of $IF$ and $INF$ as mentioned in Section \ref{sec:total_er}. We do either not really have $INF$ or $IF$. On one hand we can take the MSD of the not corrected words as $INF$ or on the other hand take the same value for $IF$, because the participant had to correct these words at one point.\\
-To still get a value for the participant's conscientiousness we decide to work with words only, not characters. Thus, for $INF$ we count all the words not immediately corrected by a participant and for $IF$ the words that were corrected by using the keyboard's suggestions.\\
-TODO: GRAPHICAL VISUALTISATION
-A score of 100\% would be perfect. This would mean, that a participant corrects every word with the word suggestions, if it is possible. The average value we get here is 66.28\%, which means about two third of the words, that can be corrected with the suggestions, are corrected this way. The worst value is 33.33\% and the best value a participant achieved is 100\%. In our opinion, this score is not too bad. A lot of the participants are not used to word-gesture-keyboards and do not work or use VR that much. We think, if they used the keyboard over a longer period of time, they would get used to the words, that are sometimes harder for the keyboard to get as best match, and would pay more attention to use the word suggestions then.
+Normally, they would take the values of $IF$ and $INF$ as mentioned in Section \ref{sec:total_er} (not as we took them, but as Soukoreff and MacKenzie \cite{10.1145/642611.642632} took them). For us, the problem is that we emanate from the scenario, where a participant is not able to use backspaces apart from the special case. Therefore, there will not be any characters in the input stream that are not in the transcribed text besides the special case words and the according backspaces.\\
+To get a better value for the participant's conscientiousness we decide to work with words only, not characters. Thus, for $INF$ we count all the words not immediately corrected by a participant and for $IF$ the words that were corrected by using the keyboard's suggestions. We think, that the calculation makes more sense this way when looking at our keyboard, that writes most of the time whole words and not single characters.\\
+A score of 100\% would be perfect. This would mean, that a participant corrects every word with the word suggestions, if it is possible. The average value we get here is 66.28\%, which means about two third of the words, that can be corrected with the suggestions, are corrected this way. The worst value is 33.33\% and the best value a participant achieved is 100\%. In our opinion, this score is not too bad. A lot of the participants are not used to word-gesture-keyboards and do not work in or use VR that much. We think, if they used the keyboard over a longer period of time, they would get used to the words, that are sometimes harder for the keyboard to get as best match, and would pay more attention to use the word suggestions then.\\
+Interesting is, that if we let away the errors caused by ``the'', ``in'' and ``more'', the average value decreases to 63.73\%. This is an indication of the fact, that the participant seemed to get used to the errors caused by these three words and fixed them by using the word suggestions.
 
 \subsubsection{System Error Rate}
-Here we do not want to see if a participant was paying attention or not, but rather if our algorithm finds the right words most of the time. We count all the words that were neither the best match nor in the word suggestions, such that a participant had no chance to get this word right the first time. If this happened multiple times to a word, we count it in every time.
+Here we do not want to see if a participant was paying attention or not, but rather if our algorithm finds the right words most of the time. We count all the words that were neither the best match nor in the word suggestions, such that a participant had no chance to get this word right the first time. If this happened multiple times to a word, we count it in every time. We decide to name this error rate the system error rate, although a participant could have done a really bad gesture which then would not really be the system's fault to not find a word
 \iffalse
 \begin{figure}[H]
     \makebox[\textwidth][c]{
@@ -263,29 +276,30 @@ Here we do not want to see if a participant was paying attention or not, but rat
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{system_error2_1.pdf}
+    \includegraphics[width=0.8\textwidth]{system_error2_2.pdf}
     \caption{percentage of words that were not found by the system neither as best match nor as suggestion}
     \label{fig:error_system}
 \end{figure}
 
 
-In \Cref{fig:error_system} we can see what percentage of the words were not found by the system, neither directly as best match, nor as word suggestions, which a participant could choose it from. We decide to name this error the system error, although a participant could have done a really bad gesture which then would not really be the system's fault to not find a word.\\
-We can see, that the percentage of words not found by the system, does not have a correlation with the wpm. We can not see a tendency, that either the ones with high wpm or the ones with low wpm have fewer problems with that.\\
-On one hand, the average length of a word in the phrases we used is 4.16, on the other hand, the average length of a word the system has not found in the first try is 7.03. This tells us, that words with a length way bigger than the average one, are more error-prone. We think this makes sense, because the longer the word, most of the time, the longer the gesture. In a bigger gesture, deviations from the perfect graph are harder to prevent than in a small gesture.
+In \Cref{fig:error_system} we can see what percentage of the words were not found by the system, neither directly as best match, nor as word suggestions, which a participant could choose from.\\
+We can see, that the system error rate, does not have a correlation with the wpm. We can not see a tendency, that either the ones with high wpm or the ones with low wpm have fewer problems with not being able to write the right word. The average system error rate is 4.33\%, which means that about every 23rd word made a problem.\\
+On one hand, the average length of a word of the phrases we used is 4.16, on the other hand, the average length of a word the system has not found in the first try is 7.03. This tells us, that words with a length way bigger than the average one, are more error-prone. We think this makes sense, because the longer the word, most of the time, the longer the gesture. In a bigger gesture, deviations from the perfect graph are harder to prevent than in a small gesture and the system might not output the right word.
 %We can see, that in \cref{fig:error_system:error_system1} the percentages are much higher than in \cref{fig:error_system:error_system2}. This means that the words, which the system did not find a word, need to be longer than an average word in the written phrases. A reason for this might be, that often gestures for long words did not succeed. If a participant made some little curves too much in a gesture for a long word, the chances are lower, that the system can detect the right word, whereas for a small word the chance is higher, that the word gets found. Because the gesture can be much shorter and therefore fewer inaccuracies from a participant will happen.\\
 %For the wpm and the percentages we can not detect any correlation. It seems, that these two values are not connected with each other. 
 
 \subsection{Feedback}
 The full list including all verbatim feedback from every participant can be found in the appendix. Here, we just want to highlight the most frequently addressed points.\\
 Some participants find the best matches and suggestions sometimes confusing. The most mentioned example is that ``thee'' is preferred over ``the''.\\
-The visualization of spaces or the current position are another thing that is frequently addressed. Some participants find it unclear where the cursor is, hence if a space is missing or not. They suggest to implement some kind of visual indication, that indicates, where the cursor currently is. We can say about this, that this problem existed in the evaluation environment, but in vitrivr-VR, the program that our keyboard is manly developed for, has these kinds of cursor visualization.\\
+The visualization of spaces or the current position are another thing that is frequently addressed. Some participants find it unclear where the cursor is, hence if a space is missing or not. They suggest to implement some kind of visual indication, that indicates, where the cursor currently is. We can say about this, that this problem existed in the evaluation environment, but in vitrivr-VR, the program that our keyboard is manly developed for, has these kinds of cursor visualizations.\\
 We also got a lot of praise and most of the time we saw a cheerful face when the VR headset got taken off. Some find it surprisingly intuitive, and others have a good feeling about using it.
 
 \section{Discussion}
 In this section we compare our results to other works' results and talk about some changes we did because of the feedback.
 
 \subsection{Result Comparison}
-First, we begin with the wpm. Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} evaluate in their paper four different VR input methods, a raycasting, drum-like, head-directed input and a split keyboard. The first one is a keyboard where a user can select letter by pointing a ray with a controller on it. For the second one the controllers simulate drum sticks in VR and letters have to be pressed by them. For the third keyboard a user has to aim with the head for the letters and press a button on the controller to input. The last keyboard is one, that is split into two halves, one assigned to each controller. 
+First, we begin with the wpm. Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} evaluate in their paper four different VR input methods, a raycasting, drum-like, head-directed input and a split keyboard. The first one is a keyboard where a user can select letters by pointing a ray with a controller on it. For the second one the controllers simulate drum sticks in VR and letters have to be pressed by them. For the third keyboard a user has to aim with the head for the letters and press a button on the controller to input. The last keyboard is one, that is split into two halves, one assigned to each controller.\\
+Another paper we want to compare the wpm with is from Chen et al. \cite{10.1145/3290607.3312762}. One of the keyboards they evaluate is a word-gesture keyboard where a user points with a ray from the controller to it and makes gestures like this.
 \begin{table}[ht!]
     \centering
     \caption{wpm for different VR text input methods}
@@ -295,17 +309,18 @@ First, we begin with the wpm. Boletsis and Kongsvik \cite{Boletsis2019Controller
         Drum-like keyboard& 21.01\\
         Head-directed input keyboard& 10.83\\
         Split keyboard& 10.17\\
+        Word-gesture raycast keyboard& 16.43\\
         Word-gesture keyboard& 12.75\\
         \bottomrule
     \end{tabular}
     \label{tab:wpm_compare}
 \end{table}
 
-In Table \ref{tab:wpm_compare} we listed the results of Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} and our measurement of the wpm value. They had a similar approach to the evaluation as we did, with one difference. They did use the same ten phrases for every participant and keyboard type.\\
+In Table \ref{tab:wpm_compare} we listed the results of Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT},  Chen et al. \cite{10.1145/3290607.3312762} and our measurement of the wpm value. Both had a similar approach to the evaluation as we did, with one difference. They did use the same ten phrases for every participant and keyboard type.\\
 As we can see, our keyboard lines up in the middle. It is not the one with the lowest wpm, but also not the one with the highest.
 
-Another comparison we can do with the results of Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} is the total ER value.
-\begin{table}[ht!]
+Another comparison we can do with the results of Boletsis and Kongsvik \cite{Boletsis2019ControllerbasedTT} is the comparison of the total ER value.
+\begin{table}[H]
     \centering
     \caption{total ER for different VR text input methods}
     \begin{tabular}{cc} \toprule
@@ -319,10 +334,23 @@ Another comparison we can do with the results of Boletsis and Kongsvik \cite{Bol
     \end{tabular}
     \label{tab:total_er_compare}
 \end{table}
-The total ER for our keyboard seems to be much better than for the other input methods. A simple explanation could be that a user can make an error with every input. For the first four keyboards in \Cref{tab:total_er_compare} one input is equal to one character. Thus, if a user wants to input a phrase, they need to make inputs equal to the number of characters the phrase consists of. With a word-gesture keyboard, a user only has to make inputs equal to the amount of words in the phrase, which is usually much lower. And if the word is not the correct one, most of the time, it will not differ a lot from the word, that is intended to write. Therefore, in this case, there will not a lot of characters be added to the $INF$ value.
+The total ER for our keyboard seems to be much better than for the other input methods. A simple explanation could be that a user can make an error with every input. For the first four keyboards in \Cref{tab:total_er_compare} one input is equal to one character. Thus, if a user wants to input a phrase, they need to make inputs equal to the number of characters the phrase consists of. With a word-gesture keyboard, a user only has to make inputs equal to the amount of words in the phrase, which is usually much lower. And if the word is not the correct one, most of the time, it will not differ a lot from the word, that is intended to write. Therefore, in this case, there will not a lot of characters be added to the $INF$ value for \Cref{eq:total_er}.\\
 
-TODO: AVERAGE WPM FOR PERFECT SENTENCES
+The last comparison we want to make is with the EKS ER value from Chen et al. \cite{10.1145/3290607.3312762}. They state in the paper, that they used the EKS ER, but without the erroneous keystrokes, but the number of backspaces used. Therefore, this is defined the same way as our backspace error, and we can compare the values.
+\begin{table}[H]
+    \centering
+    \caption{total ER for different VR text input methods}
+    \begin{tabular}{cc} \toprule
+        Word-gesture keyboard raycasting&15.64\%\\
+        Our word-gesture keyboard&12.65\%\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:error_backspace_compare}
+\end{table}
+In \Cref{tab:error_backspace_compare} we can see, that the error values are pretty much the same, although our value is a bit better. A reason for this might be, that they possibly did not implement, that a word can be deleted as whole. For example, if a word is wrong, with our implementation the user can just press the backspace key once and delete the whole word (only the first one, afterwards it deletes single characters).\\
+
+Overall we think, that the word-gesture approach we implemented might not be the fastest way to input words. At least this can be said for beginners. But it seems, that it has a lower error rate by far compared to single letter input methods.
 
 \subsection{New Implementations}
-Because of the feedback and some observations, we decided to do one more implementations.\\
-The first one is not a big change in code, but can still be pretty useful. We have the problem, that for example, ``thee'' is prioritized before ``the'', which does not make much sense, because ``the'' will be by far much more used in plain language. Because the word list we are currently using is ordered by the frequency of the words, we decided to let this influennce the best match and word suggestions. Now, if two or more words have the same highest score, the one that is highest in the word list will be taken, followed by the second highest and so on, until a word with a lower score comes next. This will prevent the problem with some words listed in Table \ref{tab:error_words}.
+Because of the feedback and some observations, we decide to do one more implementation.\\
+It is not a big change in the code, but can still be fairly useful. We have the problem, that for example, ``thee'' is prioritized before ``the'', which does not make much sense, because ``the'' is used far more in plain language. Because the word list we are currently using is ordered by the frequency of the words, we decided to let this influence the best match and word suggestions. Now, if two or more words have the same highest score, the one that is highest in the word list will be taken, followed by the second highest and so on, until a word with a lower score comes next. This will prevent the problem with some words listed in Table \ref{tab:error_words}.
