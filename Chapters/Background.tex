@@ -24,6 +24,12 @@ Independent of the details of the implementation, every word-gesture keyboard wo
 $\text{SHARK}^2$ is a ``large vocabulary shorthand writing system for pen-based computers'' \cite{Kristensson2004SHARK2AL} developed by Shumin Zhai and Per-Ola Kristensson. It can compare the user inputted graph with a perfect graph of any word in a given lexicon. A perfect graph is the graph, that is produced, if we start from the center of the word's first letter on the keyboard. TODO: DEFINE USER INPUTTED GRAPH Then we draw a straight line to the center of the next letter of the word and so on, until we reach the last letter. $\text{SHARK}^2$ then can find the word with the most similar graph compared to the user input. To achieve this, it uses a multi-channel recognition system.  The most important part are the two core channels, a shape recognizer and a location recognizer, where different aspects of the graphs get looked at. There is also a channel that brings language information into the calculation. Each channel alone from the system developed by Zhai and Kristensson \cite{Kristensson2004SHARK2AL} does not necessarily have enough power, but all the channels together can detect the right word. There are also some other tricks the system uses to achieve the best possible results.\\
 \subsubsection{Preconditions}
 The $\text{SHARK}^2$ system needs a lexicon that should be in the order of 10'000 words. Such a lexicon can be obtained through different methods. For example, the lexicon used to test $\text{SHARK}^2$ was mined from one of the authors' emails, but it could also just be a standard dictionary.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{BAPerfectGraph.pdf}
+    \caption{TODO: CAPTION}
+    \label{fig:PefectGraph}
+\end{figure}
 For all the words in the lexicon, also their perfect graphs have to be stored. Zhai and Kristensson \cite{Kristensson2004SHARK2AL} do not mention how they store these, but it would make sense, to only store $N$ points for each graph, with $N$ being the number of points that samples the graph. This can be justified by the fact, that for later calculations with the graphs, only these $N$ points are needed and not more.
 
 \subsubsection{Template Pruning}
@@ -31,7 +37,14 @@ First of all, $\text{SHARK}^2$ uses template pruning. It compares the start and 
 
 \subsubsection{Shape Channel Recognition}
 \label{normalize}
-The next step is to apply the shape recognizer. It compares the shapes of the perfect graph for every word in the lexicon and the user inputted graph. For this, an amount of $N$ sampling points has to be calculated for every graph. These $N$ points need to be equidistant. Then they have to be normalized in scale and location. This means, that the graphs are all normalized by scaling the largest side of the graph's bounding box to a predetermined length $L$: 
+The next step is to apply the shape recognizer. It compares the shapes of the perfect graph for every word in the lexicon and the user inputted graph. For this, an amount of $N$ sampling points has to be calculated for every graph. These $N$ points need to be equidistant. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{BAFigNorm.pdf}
+    \caption{TODO: CAPTION}
+    \label{fig:Norm}
+\end{figure}
+Then they have to be normalized in scale and location. This means, that the graphs are all normalized by scaling the largest side of the graph's bounding box to a predetermined length $L$: 
 \begin{equation}
     s = \frac{L}{\text{max}(W,H)}
 \end{equation}
@@ -45,6 +58,12 @@ Now, one could think, that this is enough and with the application of the templa
 
 \subsubsection{Location Channel Recognition}
 To avoid a lot of these confusion pairs, the authors were using a second channel. This one is not for the shape, but for the location of the graphs. For the following formulas and calculations, the normalization of the graphs is not needed anymore. As the name states, it is more about the location, where the graph lies in a coordinate system, than about its shape.\\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{BAFigDist.pdf}
+    \caption{TODO: CAPTION}
+    \label{fig:Distance}
+\end{figure}
 They use an algorithm that computes the distance of the user inputted graph $u$ to the perfect graph $t$ of every word in the lexicon. The location channel distance is defined as:
 \begin{equation}
     x_L = \sum_{i = 1}^{N}\alpha(i)\delta(i)

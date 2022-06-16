@@ -342,6 +342,7 @@ The last comparison we want to make is with the EKS ER value from Chen et al. \c
     \centering
     \caption{total ER for different VR text input methods}
     \begin{tabular}{cc} \toprule
+        text input method&backspace error\\ \midrule
         Word-gesture keyboard raycasting&15.64\%\\
         Our word-gesture keyboard&12.65\%\\
         \bottomrule
@@ -349,6 +350,27 @@ The last comparison we want to make is with the EKS ER value from Chen et al. \c
     \label{tab:error_backspace_compare}
 \end{table}
 In \Cref{tab:error_backspace_compare} we can see, that the error values are pretty much the same, although our value is a bit better. A reason for this might be, that they possibly did not implement, that a word can be deleted as whole. For example, if a word is wrong, with our implementation the user can just press the backspace key once and delete the whole word (only the first one, afterwards it deletes single characters).\\
+
+Something we find interesting is the fastest possible wpm we could reach. In \cite{Kristensson2004SHARK2AL} Zhai and Kristensson made this experiment with four different phrases. We take the same phrases and compare their results with the ones we get. The four phrases are:\\
+1. The quick brown fox jumps over the lazy dog\\
+2. Ask not what your country can do for you\\
+3. East west north south\\
+4. Up down left right\\
+
+\begin{table}[H]
+    \centering
+    \caption{total ER for different VR text input methods}
+    \begin{tabular}{cccc} \toprule
+        Phrase&$\text{SHARK}^2$ Author A&$\text{SHARK}^2$ Author B&Author of this work\\ \midrule
+        1&69.0&70.3&47.78\\
+        2&51.6&60.0&48.48\\
+        3&74.4&72.9&70.22\\
+        4&74.1&85.6&58.04\\
+        \bottomrule
+    \end{tabular}
+    \label{tab:error_backspace_compare}
+\end{table}
+We can see, that we can not reach the same maximal wpm, but especially for phrase 3 we can get close to their value. The word-gesture keyboard is obviously faster if it is on a small screen and a finger is used. The distances that have to be covered are much smaller than in VR, hence it makes it easier to write fast.\\
 
 Overall we think, that the word-gesture approach we implemented might not be the fastest way to input words. At least this can be said for beginners. But it seems, that it has a lower error rate by far compared to single letter input methods.
 

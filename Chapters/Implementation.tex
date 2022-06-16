@@ -37,6 +37,12 @@ There should be two text input methods for the user. One is the input of words w
 
 \subsubsection{With Gestures}
 The most important function our word-gesture keyboard provides, is the writing of words with gestures. A user can press and hold the trigger button of a VR controller inside the keyboard's hitbox and start making a gesture on it. The user will see a red line, that is drawn on the keyboard where they gesture. This helps them to keep track of the line they drew. When the user wants to finish the gesture, they need to release the trigger of the controller. At this moment, our program starts to evaluate the 5 words with the best match to the user inputted graph. The one with the highest confidence score will be written into the text field. The other 4 are displayed at the keyboard (fig \ref{fig:write_suggestions} right), such that the user can also choose between them. When they choose one of these 4 words, the word that has been written into the text field before, is replaced by the chosen word and the button, where the chosen word was written, will then display the replaced word.\\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{BA3DTo2D.pdf}
+    \caption{TODO: CAPTION}
+    \label{fig:3DTo2D}
+    \end{figure}
 There are some challenges in VR we have to master. First of all, in VR the user is in a three-dimensional space. Thus, when they make a gesture, they could move up and down with their controller and do not have to stay on the keyboard. For this we need to look, that the line of the gestures still lies on the keyboard as if the user would draw on it as if it was paper, and they are using a pen. The next problem is, that a user can rotate the keyboard as they want in VR. Therefore, the drawn graph will most of the time not be lieing perfectly on the x-z-plane. This means, we have to transform all the points into the x-z-plane to be able to further process these gestures. Another problem of the inputting of gestures is the amount of points. Technically seen, every frame the user presses draws a gesture, a new point gets saved. Thus, we have to reduce this amount, because it would be just too many points, and it would slow down the program massively. We implemented a function that only TODO: ÜBERPRÜFEN. keeps points of they have either a certain distance between itself and the previous point, or there is a big enough angle.
 
 \subsubsection{As Single Characters}
